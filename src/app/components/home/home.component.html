@@ -1,0 +1,37 @@
+<body>
+    <div class="container">
+
+        <nav>
+            <h2>Twitter Clone</h2>
+
+            <!-- Select User -->
+            <select id="userSelect" [(ngModel)]="selectedUserId" (change)="loadPosts(selectedUserId)">
+                <label for="userSelect">Select a User:</label>
+                <option *ngFor="let user of users" [value]="user.id">{{ user.username }}</option>
+            </select>
+        </nav>
+        <div class="post-comments">
+            <div class="posts">
+                <!-- User's Posts -->
+                <h3>User's Posts</h3>
+                <ul>
+                    <li *ngFor="let post of posts" (click)="loadComments(post.id)"
+                        [class.selected]="selectedPostId === post.id">
+                        {{ post.title }}
+                    </li>
+                </ul>
+            </div>
+
+            <div class="comments">
+                <!-- Post Comments -->
+                <h3>Comments</h3>
+                <ul>
+                    <li *ngFor="let comment of comments">
+                        <strong>{{ comment.name }}</strong>:{{ comment.body }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</body>
